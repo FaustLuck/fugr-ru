@@ -1,19 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { initialState } from "./initialState.js";
-import { createQuery, getBooks, updateStartIndex, clear } from "./actions.js";
+import { getBooks, updateStartIndex, clear } from "./actions.js";
 
 export default createReducer(initialState, (builder) => {
   builder
-    .addCase(createQuery, (state, {payload}) => {
-      if (payload.searchString === "") {
-        state.query = "";
-        return;
-      }
-      const stringSubject = (payload.selectedCategory === "all") ? "" : `+subject:${payload.selectedCategory}`;
-      const pagination = `&maxResults=30`;
-      const startIndex = (payload.startIndex) ? `&startIndex=${payload.startIndex}` : "";
-      state.query = `https://www.googleapis.com/books/v1/volumes?q=${payload.searchString}${stringSubject}${pagination}&orderBy=${payload.selectedSortBy}${startIndex}&key=${import.meta.env.VITE_API_key}`;
-    })
     .addCase(updateStartIndex, (state) => {
       state.startIndex += state.books.length;
     })
