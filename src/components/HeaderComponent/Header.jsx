@@ -1,7 +1,7 @@
 import { useState } from "react";
-import List from "../ListComponent/List.jsx";
+import List from "@c/ListComponent/List.jsx";
 import { useDispatch } from "react-redux";
-import { getBooks, clear } from "../../store/actions.js";
+import { getBooks, clear } from "@s/actions.js";
 
 
 function Header() {
