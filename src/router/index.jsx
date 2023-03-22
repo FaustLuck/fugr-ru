@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "@c/App.jsx";
-import BookInfo from "@c/BookInfo/BookInfo.jsx";
+import App from "@p/App.jsx";
+import Book from "@p/Book.jsx";
 
 const router = createBrowserRouter([
   {
@@ -9,7 +9,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/:id",
-    element: <BookInfo/>
+    element: <Book/>
   }
 ]);
 
