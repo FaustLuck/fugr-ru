@@ -6,12 +6,19 @@
   flex: 1;
   max-width: 1280px;
   margin: 0 auto;
-  min-height: 100%;
 
   &__thumbnail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex-grow: .3;
+    padding: 0 2em;
+    height: 100%;
 
-    &>picture>*{
+    background-color: #595959;
+
+    & > picture > img {
+      box-shadow: 10px 10px 10px 10px #121212;
       width: 100%;
     }
   }
@@ -35,7 +42,8 @@
     font-style: italic;
     color: #8b8b8b;
   }
-  &__authors{
+
+  &__authors {
     text-decoration: underline;
     color: #8b8b8b;
   }
