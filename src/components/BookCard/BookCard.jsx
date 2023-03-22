@@ -16,7 +16,9 @@ function BookCard(props) {
 
   return (
     <article onClick={openTheBook} className="card">
-      <img src={book.smallThumbnail} alt={book.title}/>
+      <div>
+        <img src={book.smallThumbnail} alt={book.title}/>
+      </div>
       <span className="card__categories">{book.categories}</span>
       <span className="card__title">{book.title}</span>
       <span className="card__authors">{book.authors}</span>
