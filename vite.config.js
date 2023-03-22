@@ -26,6 +26,10 @@ export default defineConfig({
       {
         find: "@r",
         replacement: fileURLToPath(new URL("./src/router", import.meta.url))
+      },
+      {
+        find: "@p",
+        replacement: fileURLToPath(new URL("./src/pages", import.meta.url))
       }
     ]
   }
