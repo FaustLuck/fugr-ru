@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ItemList from "./ItemList.jsx";
 
 function List(props) {
   const [list] = useState(createList(props.list));
@@ -7,7 +6,7 @@ function List(props) {
   function createList(list) {
     return list.map(el => {
       const [key, title] = Object.entries(el)[0];
-      return <ItemList key={key} value={key} title={title}/>;
+      return <option key={key} value={key}>{title}</option>;
     });
   }
 
