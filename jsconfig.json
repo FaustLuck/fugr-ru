@@ -3,7 +3,8 @@
     "paths": {
       "@s/*": ["./src/store/*"],
       "@c/*": ["./src/components/*"],
-      "@a/*": ["./src/assets/*"]
+      "@a/*": ["./src/assets/*"],
+      "@r/*": ["./src/router/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

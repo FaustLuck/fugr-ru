@@ -22,6 +22,10 @@ export default defineConfig({
       {
         find: "@a",
         replacement: fileURLToPath(new URL("./src/assets", import.meta.url))
+      },
+      {
+        find: "@r",
+        replacement: fileURLToPath(new URL("./src/router", import.meta.url))
       }
     ]
   }
