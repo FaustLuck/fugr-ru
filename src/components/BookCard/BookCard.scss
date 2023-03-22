@@ -8,9 +8,19 @@
   cursor: pointer;
   transition: box-shadow .5s, background-color .5s;
 
-  &:hover{
+  &:hover {
     box-shadow: 0 0 10px 10px #121212;
     background-color: #595959;
+  }
+
+  &__categories {
+    font-style: italic;
+    color: #8b8b8b;
+  }
+
+  &__authors {
+    text-decoration: underline;
+    color: #8b8b8b;
   }
 }
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "@c/List/List.scss";
 
 function List(props) {
   const [list] = useState(createList(props.list));

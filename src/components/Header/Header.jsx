@@ -1,8 +1,8 @@
 import { useState } from "react";
-import List from "@c/ListComponent/List.jsx";
+import List from "@c/List/List.jsx";
 import { useDispatch } from "react-redux";
 import { getBooks, clear } from "@s/actions.js";
-
+import "@c/Header/Header.scss";
 
 function Header() {
   const categories = [
