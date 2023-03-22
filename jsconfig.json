@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@s/*": ["./src/store/*"],
+      "@c/*": ["./src/components/*"],
+      "@a/*": ["./src/assets/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
