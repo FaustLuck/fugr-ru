@@ -40,11 +40,19 @@
 .detail {
   &__categories {
     font-style: italic;
-    color: #8b8b8b;
+    color: $secondaryTextLight;
+
+    @include darkMode {
+      color: $secondaryTextDark
+    }
   }
 
   &__authors {
     text-decoration: underline;
-    color: #8b8b8b;
+    color: $secondaryTextLight;
+
+    @include darkMode {
+      color: $secondaryTextDark
+    }
   }
 }

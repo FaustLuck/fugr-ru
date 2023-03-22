@@ -5,9 +5,14 @@ header {
   align-items: center;
   position: sticky;
   top: 0;
-  background-color: #242424;
+  background-color: $primaryLight;
   padding-bottom: 1em;
-  box-shadow: 0 9px 10px 0 #242424;
+  box-shadow: 0 9px 10px 0 $primaryLight;
+
+  @include darkMode{
+    background-color: $primaryDark;
+    box-shadow: 0 9px 10px 0 $primaryDark;
+  }
 }
 
 form {

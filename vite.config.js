@@ -9,6 +9,13 @@ export default defineConfig({
     host: true,
     port: 8081,
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "@scss/global.scss";`
+      }
+    }
+  },
   resolve: {
     alias: [
       {
@@ -30,6 +37,10 @@ export default defineConfig({
       {
         find: "@p",
         replacement: fileURLToPath(new URL("./src/pages", import.meta.url))
+      },
+      {
+        find:'@scss',
+        replacement: fileURLToPath(new URL("./src/styles", import.meta.url))
       }
     ]
   }

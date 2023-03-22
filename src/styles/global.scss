@@ -1,0 +1,18 @@
+//light
+$primaryLight: #213547;
+$primaryTextLight: #ffffff;
+$secondaryTextLight:#ffffff;
+
+
+//dark
+$primaryDark: #242424;
+$primaryTextDark: #ffffff;
+$secondaryTextDark:#8b8b8b;
+
+//mixins
+
+@mixin darkMode {
+  @media(prefers-color-scheme: dark) {
+    @content;
+  }
+}
