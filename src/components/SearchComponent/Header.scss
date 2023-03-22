@@ -1,0 +1,28 @@
+header {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: #242424;
+  padding-bottom: 1em;
+  box-shadow: 0 9px 10px 0 #242424;
+  max-height: 100vh;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.search {
+  position: relative;
+  font-size: 1.5em;
+  margin: .5em;
+
+  &::after {
+    position: absolute;
+  }
+}

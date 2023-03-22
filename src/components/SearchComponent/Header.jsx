@@ -1,10 +1,10 @@
 import { useState } from "react";
-import List from "../List.jsx";
+import List from "../ListComponent/List.jsx";
 import { useDispatch } from "react-redux";
 import { getBooks, clear } from "../../store/actions.js";
 
 
-function Search() {
+function Header() {
   const categories = [
     {all: "Все категории"},
     {art: "Искусство"},
@@ -31,26 +31,30 @@ function Search() {
   }
 
   return (
-    <form>
-      <h1>Поиск книг</h1>
-      <input placeholder="Поиск..." type="text"
-             onChange={(e) => setSearchString(e.target.value)}
-             onKeyDown={sendQuery}
-      ></input>
-      <div>
-        <label>
-          Категория:
-          <List key={"categories"} list={categories}
-                handleChange={((value) => setSelectedCategory(value))}></List>
-        </label>
-        <label>
-          Сортировать по
-          <List key={"order"} list={sortBy}
-                handleChange={((value) => setSelectedSortBy(value))}></List>
-        </label>
-      </div>
-    </form>
+    <header>
+      <form>
+        <h1>Поиск книг</h1>
+        <input placeholder="Поиск..." type="text"
+               className="search"
+               onChange={(e) => setSearchString(e.target.value)}
+               onKeyDown={sendQuery}
+        ></input>
+        {/*<input type="button" value="Поиск" title="Искать"/>*/}
+        <div>
+          <label>
+            Категория:
+            <List key={"categories"} list={categories}
+                  handleChange={((value) => setSelectedCategory(value))}></List>
+          </label>
+          <label>
+            Сортировать по
+            <List key={"order"} list={sortBy}
+                  handleChange={((value) => setSelectedSortBy(value))}></List>
+          </label>
+        </div>
+      </form>
+    </header>
   );
 }
 
-export default Search;
+export default Header;
