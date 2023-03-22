@@ -1,0 +1,42 @@
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  min-height: 100%;
+
+  &__thumbnail {
+    flex-grow: .3;
+
+    &>picture>*{
+      width: 100%;
+    }
+  }
+
+  &__detail {
+    flex: 1 1;
+    padding: 2em;
+
+    & > * {
+      padding: .5em 0;
+    }
+
+    & > p {
+      padding: 2em 0;
+    }
+  }
+}
+
+.detail {
+  &__categories {
+    font-style: italic;
+    color: #8b8b8b;
+  }
+  &__authors{
+    text-decoration: underline;
+    color: #8b8b8b;
+  }
+}
