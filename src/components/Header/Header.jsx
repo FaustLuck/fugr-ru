@@ -3,6 +3,7 @@ import List from "@c/List/List.jsx";
 import { useDispatch } from "react-redux";
 import { getBooks, clear } from "@s/actions.js";
 import "@c/Header/Header.scss";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const categories = [
@@ -22,10 +23,12 @@ function Header() {
   const [selectedSortBy, setSelectedSortBy] = useState("relevance");
   const [searchString, setSearchString] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function sendQuery(e) {
     if (e.type === "keydown" && e.code !== "NumpadEnter" && e.code !== "Enter") return;
     e.preventDefault();
+    navigate("/");
     dispatch(clear());
     dispatch(getBooks({selectedCategory, selectedSortBy, searchString}));
   }
