@@ -2,6 +2,7 @@ import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const updateStartIndex = createAction("updateStartIndex");
 export const clear = createAction("clear");
+export const openBook = createAction("openBook");
 export const getBooks = createAsyncThunk(
   "getBooks",
   async (payload = null, {rejectWithValue}) => {

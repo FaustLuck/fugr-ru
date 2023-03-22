@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { initialState } from "./initialState.js";
-import { getBooks, updateStartIndex, clear } from "./actions.js";
+import { initialState } from "@s/initialState.js";
+import { getBooks, updateStartIndex, clear, openBook } from "@s/actions.js";
 
 export default createReducer(initialState, (builder) => {
   builder
@@ -11,6 +11,11 @@ export default createReducer(initialState, (builder) => {
       state.books = [];
       state.totalItems = 0;
       state.startIndex = 0;
+    })
+    .addCase(openBook, (state, {payload}) => {
+      const {id} = payload;
+      console.log(id);
+      state.selectedBookId = id;
     })
     .addCase(getBooks.fulfilled, (state, {payload}) => {
       const {totalItems, items} = payload;
@@ -24,6 +29,7 @@ export default createReducer(initialState, (builder) => {
     .addCase(getBooks.pending, (state) => {
       state.loading = true;
     });
+
 });
 
 function sliceBook(books) {
@@ -35,8 +41,8 @@ function sliceBook(books) {
 
     output.push({
       id: book.id,
-      authors: volumeInfo?.authors?.join(', '),
-      categories: volumeInfo?.categories?.join(', '),
+      authors: volumeInfo?.authors?.join(", "),
+      categories: volumeInfo?.categories?.join(", "),
       description: volumeInfo?.description,
       smallThumbnail: imageLinks?.smallThumbnail,
       thumbnail: imageLinks?.thumbnail,

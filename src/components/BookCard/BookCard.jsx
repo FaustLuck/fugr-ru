@@ -1,9 +1,11 @@
+import {openBook} from "@s/actions.js";
+
 function BookCard(props) {
   const book = props.book;
 
 
   return (
-    <article className="card">
+    <article /*onClick={}*/ className="card">
       <img src={book.smallThumbnail} alt={book.title}/>
       <span className="card__categories">{book.categories}</span>
       <span className="card__title">{book.title}</span>

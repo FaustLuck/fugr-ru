@@ -3,5 +3,6 @@ export const initialState = {
   totalItems: null,
   loading: false,
   query: "",
-  startIndex: 0
+  startIndex: 0,
+  selectedBookId: null
 };

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import BookCard from "../BookCard/BookCard.jsx";
+import BookCard from "@c/BookCard/BookCard.jsx";
 
 function Content() {
   const books = useSelector(state => state.books);

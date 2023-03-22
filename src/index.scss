@@ -1,8 +1,8 @@
-@import "./components/BookCard/BookCard";
-@import 'components/ContentComponent/Content';
-@import "./components/SearchComponent/Header";
-@import "./components/ListComponent/List";
-@import "./components/Footer/Footer";
+@import "@c/BookCard/BookCard";
+@import '@c/ContentComponent/Content';
+@import "@c/HeaderComponent/Header";
+@import "@c/ListComponent/List";
+@import "@c/Footer/Footer";
 
 
 * {
