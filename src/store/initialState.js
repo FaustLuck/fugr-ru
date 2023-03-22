@@ -1,6 +1,6 @@
 export const initialState = {
   books: [],
-  totalItems: 0,
+  totalItems: null,
   loading: false,
   query: "",
   startIndex: 0
