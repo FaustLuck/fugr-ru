@@ -5,31 +5,51 @@
   width: calc((100% - 2em) / 7);
   flex-direction: column;
   align-items: center;
-  background-color: #404040;
   cursor: pointer;
   transition: box-shadow .5s, background-color .5s;
 
+  background-color: $cardBGLight;
+
   &:hover {
-    box-shadow: 0 0 10px 10px #121212;
-    background-color: #595959;
+    box-shadow: 0 0 10px 10px $shadowLight;
+    background-color: $glowLight;
+
   }
-&>div{
-  height: 40%;
-  &>img{
-    height: 100%;
-    width: auto;
+
+  @include darkMode {
+    background-color: $cardBGDark;
+
+    &:hover {
+      box-shadow: 0 0 10px 10px $shadowDark;
+      background-color: $glowDark;
+    }
   }
-}
+
+  & > div {
+    height: 40%;
+
+    & > img {
+      height: 100%;
+      width: auto;
+    }
+  }
 
 
   &__categories {
     font-style: italic;
-    color: #8b8b8b;
+    color: $secondaryTextLight;
+
+    @include darkMode{
+      color: $secondaryTextDark;
+    }
   }
 
   &__authors {
     text-decoration: underline;
-    color: #8b8b8b;
+    color: $secondaryTextLight;
+    @include darkMode{
+      color: $secondaryTextDark;
+    }
   }
 }
 

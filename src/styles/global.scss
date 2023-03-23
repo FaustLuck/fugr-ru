@@ -1,13 +1,24 @@
 //light
-$primaryLight: #213547;
+$primaryLight: #6194c3;
 $primaryTextLight: #ffffff;
-$secondaryTextLight:#ffffff;
+$secondaryTextLight: #ffffff;
+$glowLight:#476a8b;
+$shadowLight:#34506a;
+$cardBGLight:#34506a;
 
 
 //dark
 $primaryDark: #242424;
 $primaryTextDark: #ffffff;
-$secondaryTextDark:#8b8b8b;
+$secondaryTextDark: #8b8b8b;
+$glowDark:#595959;
+$shadowDark:#121212;
+$cardBGDark:#404040;
+
+//breakpoints
+
+$medium: 768px;
+$small: 576px;
 
 //mixins
 
