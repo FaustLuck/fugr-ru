@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { initialState } from "@s/initialState.js";
-import { getBooks, clear, chooseBook, saveChoice, updateStartIndex } from "@s/actions.js";
+import { getBooks, clear, chooseBook, saveChoice, updateStartIndex, getBook } from "@s/actions.js";
 
 export default createReducer(initialState, (builder) => {
   builder
@@ -48,6 +48,7 @@ export default createReducer(initialState, (builder) => {
     })
     .addCase(getBooks.rejected, state => {
       state.loading = false;
+      state.totalItems=0;
     })
     .addCase(getBooks.pending, state => {
       state.loading = true;
