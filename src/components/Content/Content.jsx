@@ -7,7 +7,7 @@ function Content() {
   const books = useSelector(state => state.books);
 
   const listBook = books.map(book => {
-    return <BookCard key={book.id} book={book}/>;
+    return <BookCard key={book.id} id={book.id}/>;
   });
 
   return (

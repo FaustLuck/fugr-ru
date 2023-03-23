@@ -1,17 +1,18 @@
 import { chooseBook } from "@s/actions.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "@c/BookCard/BookCard.scss";
 
 
 function BookCard(props) {
-  const book = props.book;
+  const id = props.id;
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const book = useSelector(state => state.books.find(el => el.id === id));
 
   function openTheBook() {
-    dispatch(chooseBook(book.id));
-    navigate(`/${book.id}`);
+    dispatch(chooseBook(id));
+    navigate(`/${id}`);
   }
 
   return (
