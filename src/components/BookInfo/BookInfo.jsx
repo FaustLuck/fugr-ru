@@ -1,10 +1,17 @@
 import { useParams } from "react-router-dom";
 import "@c/BookInfo/BookInfo.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { chooseBook, getBook } from "@s/actions.js";
 
 function BookInfo() {
   const {id} = useParams();
   const book = useSelector(state => state.books.find(el => el.id === id));
+  if (!book) {
+    const dispatch = useDispatch();
+    dispatch(chooseBook(id));
+    dispatch(getBook());
+    return (<></>);
+  }
   return (
     <section className="info">
       <div className="info__thumbnail">

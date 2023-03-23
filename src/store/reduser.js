@@ -17,44 +17,54 @@ export default createReducer(initialState, (builder) => {
       state.selected.pagination = 30;
     })
     .addCase(chooseBook, ({selected}, {payload}) => {
-      const {id} = payload;
-      selected.bookID = id;
+      selected.bookID = payload;
     })
     .addCase(saveChoice, (state, {payload}) => {
       Object.assign(state.selected, payload);
     })
+    .addCase(getBook.fulfilled, (state, {payload}) => {
+      if (state.books.find(oldBook => oldBook.id === payload.id)) return;
+      state.books.push(sliceBook(payload));
+      state.loading = false;
+    })
+    .addCase(getBook.rejected, state => {
+      state.loading = false;
+      state.totalItems=0;
+    })
+    .addCase(getBook.pending, state => {
+      state.loading = true;
+    })
     .addCase(getBooks.fulfilled, (state, {payload}) => {
       const {totalItems, items} = payload;
       state.fullLoad = (!items);
-      if (items) state.books = sliceBooks(state.books, items);
+      if (items) {
+        items.forEach(newBook => {
+          if (state.books.find(oldBook => oldBook.id === newBook.id)) return;
+          state.books.push(sliceBook(newBook));
+        });
+      }
       if (!state.totalItems) state.totalItems = totalItems;
       state.loading = false;
     })
-    .addCase(getBooks.rejected, (state) => {
+    .addCase(getBooks.rejected, state => {
       state.loading = false;
     })
-    .addCase(getBooks.pending, (state) => {
+    .addCase(getBooks.pending, state => {
       state.loading = true;
     });
 
 });
 
-function sliceBooks(stateBooks, newBooks) {
-
-  for (const book of newBooks) {
-    if (stateBooks.find(el => el.id === book.id)) continue;
-    const {volumeInfo} = book;
-    const {imageLinks} = volumeInfo;
-
-    stateBooks.push({
-      id: book.id,
-      authors: volumeInfo?.authors?.join(", "),
-      categories: volumeInfo?.categories?.join("/ "),
-      description: volumeInfo?.description,
-      smallThumbnail: imageLinks?.smallThumbnail,
-      thumbnail: imageLinks?.thumbnail,
-      title: volumeInfo?.title
-    });
-  }
-  return stateBooks;
+function sliceBook(book) {
+  const {volumeInfo} = book;
+  const {imageLinks} = volumeInfo;
+  return {
+    id: book.id,
+    authors: volumeInfo?.authors?.join(", "),
+    categories: volumeInfo?.categories?.join("/ "),
+    description: volumeInfo?.description,
+    smallThumbnail: imageLinks?.smallThumbnail,
+    thumbnail: imageLinks?.thumbnail,
+    title: volumeInfo?.title
+  };
 }

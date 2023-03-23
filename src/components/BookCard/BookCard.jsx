@@ -10,7 +10,7 @@ function BookCard(props) {
   const navigate = useNavigate();
 
   function openTheBook() {
-    dispatch(chooseBook(book));
+    dispatch(chooseBook(book.id));
     navigate(`/${book.id}`);
   }
 
