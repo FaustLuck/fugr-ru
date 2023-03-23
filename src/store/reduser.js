@@ -4,10 +4,11 @@ import { getBooks, clear, chooseBook, saveChoice, updateStartIndex } from "@s/ac
 
 export default createReducer(initialState, (builder) => {
   builder
-    .addCase(updateStartIndex, (state) => {
-      state.selected.startIndex = (state.selected.startIndex + state.selected.pagination > state.totalItems)
-        ? state.totalItems
-        : state.selected.startIndex + state.selected.pagination;
+    .addCase(updateStartIndex, ({totalItems, selected}) => {
+      selected.startIndex = (selected.startIndex + selected.pagination > totalItems)
+        ? totalItems
+        : selected.startIndex + selected.pagination;
+      if (selected.pagination + selected.startIndex > totalItems) selected.pagination = totalItems - selected.startIndex;
     })
     .addCase(clear, (state) => {
       state.books = [];
@@ -24,7 +25,8 @@ export default createReducer(initialState, (builder) => {
     })
     .addCase(getBooks.fulfilled, (state, {payload}) => {
       const {totalItems, items} = payload;
-      state.books = sliceBooks(state.books, items);
+      state.fullLoad = (!items);
+      if (items) state.books = sliceBooks(state.books, items);
       if (!state.totalItems) state.totalItems = totalItems;
       state.loading = false;
     })

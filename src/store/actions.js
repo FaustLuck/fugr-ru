@@ -6,7 +6,7 @@ export const chooseBook = createAction("chooseBook");
 export const saveChoice = createAction("saveChoice");
 export const getBooks = createAsyncThunk(
   "getBooks",
-  async (_, {rejectWithValue, getState}) => {//{rejectWithValue
+  async (_, {rejectWithValue, getState}) => {
     const {selected} = getState();
     const query = createQuery(selected);
     if (!query) return rejectWithValue();
@@ -15,7 +15,7 @@ export const getBooks = createAsyncThunk(
   }
 );
 
-function createQuery({searchString, category, sortBy, startIndex,pagination}) {
+function createQuery({searchString, category, sortBy, startIndex, pagination}) {
   if (searchString === "") return null;
   let query = `https://www.googleapis.com/books/v1/volumes?q=${searchString}`;
 

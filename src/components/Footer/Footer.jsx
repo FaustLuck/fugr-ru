@@ -1,9 +1,10 @@
 import "@c/Footer/Footer.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getBooks, updateStartIndex } from "@s/actions.js";
 
 function Footer() {
   const dispatch = useDispatch();
+  const fullLoad = useSelector(state => state.fullLoad);
 
   function loadMore() {
     dispatch(updateStartIndex());
@@ -12,7 +13,7 @@ function Footer() {
 
   return (
     <footer>
-      <input type="button" value="Загрузить еще" onClick={loadMore}/>
+      <input type="button" value="Загрузить еще" disabled={fullLoad!==false} onClick={loadMore}/>
     </footer>
   );
 }
