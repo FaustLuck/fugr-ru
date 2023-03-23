@@ -29,7 +29,7 @@ export default createReducer(initialState, (builder) => {
     })
     .addCase(getBook.rejected, state => {
       state.loading = false;
-      state.totalItems=0;
+      state.totalItems = 0;
     })
     .addCase(getBook.pending, state => {
       state.loading = true;
@@ -48,7 +48,7 @@ export default createReducer(initialState, (builder) => {
     })
     .addCase(getBooks.rejected, state => {
       state.loading = false;
-      state.totalItems=0;
+      state.totalItems = 0;
     })
     .addCase(getBooks.pending, state => {
       state.loading = true;
