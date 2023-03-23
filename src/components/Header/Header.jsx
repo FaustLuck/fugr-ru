@@ -5,6 +5,7 @@ import { getBooks, clear, saveChoice } from "@s/actions.js";
 import "@c/Header/Header.scss";
 import { useNavigate } from "react-router-dom";
 import imgURL from "@a/glass.svg";
+import Counter from "@c/Counter/Counter.jsx";
 
 function Header() {
   const categoriesList = [
@@ -62,6 +63,7 @@ function Header() {
                   handleChange={((value) => setSortBy(value))}></List>
           </label>
         </div>
+        <Counter/>
       </form>
     </header>
   );
