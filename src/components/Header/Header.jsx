@@ -1,13 +1,13 @@
 import { useState } from "react";
 import List from "@c/List/List.jsx";
 import { useDispatch } from "react-redux";
-import { getBooks, clear } from "@s/actions.js";
+import { getBooks, clear, saveChoice } from "@s/actions.js";
 import "@c/Header/Header.scss";
 import { useNavigate } from "react-router-dom";
 import imgURL from "@a/glass.svg";
 
 function Header() {
-  const categories = [
+  const categoriesList = [
     {all: "Все категории"},
     {art: "Искусство"},
     {biography: "Биография"},
@@ -16,12 +16,12 @@ function Header() {
     {medical: "Медицина"},
     {poetry: "Поэзия"}
   ];
-  const sortBy = [
+  const sortByList = [
     {relevance: "релевантности"},
     {newest: "новизне"}
   ];
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedSortBy, setSelectedSortBy] = useState("relevance");
+  const [category, setCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("relevance");
   const [searchString, setSearchString] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +31,8 @@ function Header() {
     e.preventDefault();
     navigate("/");
     dispatch(clear());
-    dispatch(getBooks({selectedCategory, selectedSortBy, searchString}));
+    dispatch(saveChoice({category, sortBy, searchString}));
+    dispatch(getBooks());
   }
 
   return (
@@ -49,13 +50,13 @@ function Header() {
         <div>
           <label>
             Категория:
-            <List key={"categories"} list={categories}
-                  handleChange={((value) => setSelectedCategory(value))}></List>
+            <List key={"categories"} list={categoriesList}
+                  handleChange={((value) => setCategory(value))}></List>
           </label>
           <label>
             Сортировать по
-            <List key={"order"} list={sortBy}
-                  handleChange={((value) => setSelectedSortBy(value))}></List>
+            <List key={"order"} list={sortByList}
+                  handleChange={((value) => setSortBy(value))}></List>
           </label>
         </div>
       </form>
