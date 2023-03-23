@@ -1,8 +1,4 @@
 header {
-  //width: 100%;
-  //text-align: center;
-  //display: flex;
-  //align-items: center;
   position: sticky;
   top: 0;
   background-color: $primaryLight;
@@ -24,26 +20,21 @@ form {
 
 .search {
   display: flex;
-  background-color: $primaryTextLight;
   width: fit-content;
   align-items: center;
-  padding: .25em;
-
-  @include darkMode {
-    background-color: $primaryTextDark;
-  }
-
 
   &__input {
     font-size: 1.5em;
     appearance: none;
     border: none;
     outline: none;
+    width: 100%;
+    padding: .25em;
   }
 
   & > img {
     height: 1.5em;
-    margin-left: .5em;
+    margin-left: -2em;
     cursor: pointer;
   }
 }

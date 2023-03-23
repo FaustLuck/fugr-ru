@@ -3,6 +3,7 @@
   padding: 1em;
   display: flex;
   width: calc((100% - 2em) / 7);
+  height: 400px;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
@@ -26,11 +27,13 @@
   }
 
   & > div {
-    height: 40%;
+    min-height: 40%;
 
     & > img {
       height: 100%;
       width: auto;
+      display: block;
+      margin: 0 auto;
     }
   }
 
@@ -39,7 +42,7 @@
     font-style: italic;
     color: $secondaryTextLight;
 
-    @include darkMode{
+    @include darkMode {
       color: $secondaryTextDark;
     }
   }
@@ -47,7 +50,7 @@
   &__authors {
     text-decoration: underline;
     color: $secondaryTextLight;
-    @include darkMode{
+    @include darkMode {
       color: $secondaryTextDark;
     }
   }
