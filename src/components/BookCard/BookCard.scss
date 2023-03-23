@@ -2,15 +2,23 @@
   margin: 1em;
   padding: 1em;
   display: flex;
-  width: calc(100% / 7);
+  width: 20%;
   height: 400px;
   flex-direction: column;
   align-items: center;
   cursor: pointer;
   word-break: break-all;
+  overflow: hidden;
   transition: box-shadow .5s, background-color .5s;
-
   background-color: $cardBGLight;
+
+  @media screen and (max-width: $medium) {
+    width: 25%;
+  }
+
+  @media screen and (max-width: $small) {
+    width: 100%;
+  }
 
   &:hover {
     box-shadow: 0 0 10px 10px $shadowLight;
