@@ -1,8 +1,12 @@
 footer {
   text-align: center;
-  position: sticky;
-  bottom: 0;
   background-color: $primaryLight;
+  padding-bottom: .5em;
+
+  & > input {
+    padding: .25em .5em;
+    font-size: 1.5em;
+  }
 
   @include darkMode {
     background-color: $primaryDark;
