@@ -45,6 +45,10 @@ form {
     outline: none;
     width: 100%;
     padding: .25em;
+
+    &:disabled {
+      cursor: no-drop;
+    }
   }
 
   & > img {

@@ -6,6 +6,10 @@ footer {
   & > input {
     padding: .25em .5em;
     font-size: 1.5em;
+
+    &:disabled{
+      cursor: no-drop;
+    }
   }
 
   @include darkMode {
