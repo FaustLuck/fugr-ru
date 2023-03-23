@@ -1,25 +1,31 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { initialState } from "@s/initialState.js";
-import { getBooks, updateStartIndex, clear, chooseBook } from "@s/actions.js";
+import { getBooks, clear, chooseBook, saveChoice, updateStartIndex } from "@s/actions.js";
 
 export default createReducer(initialState, (builder) => {
   builder
     .addCase(updateStartIndex, (state) => {
-      state.startIndex += state.books.length;
+      state.selected.startIndex = (state.selected.startIndex + state.selected.pagination > state.totalItems)
+        ? state.totalItems
+        : state.selected.startIndex + state.selected.pagination;
     })
     .addCase(clear, (state) => {
       state.books = [];
-      state.totalItems = 0;
-      state.startIndex = 0;
+      state.totalItems = null;
+      state.selected.startIndex = 0;
+      state.selected.pagination = 30;
     })
-    .addCase(chooseBook, (state, {payload}) => {
+    .addCase(chooseBook, ({selected}, {payload}) => {
       const {id} = payload;
-      state.selectedBookId = id;
+      selected.bookID = id;
+    })
+    .addCase(saveChoice, (state, {payload}) => {
+      Object.assign(state.selected, payload);
     })
     .addCase(getBooks.fulfilled, (state, {payload}) => {
       const {totalItems, items} = payload;
-      state.books.push(...sliceBook(items));
-      state.totalItems = totalItems;
+      state.books = sliceBooks(state.books, items);
+      if (!state.totalItems) state.totalItems = totalItems;
       state.loading = false;
     })
     .addCase(getBooks.rejected, (state) => {
@@ -31,14 +37,14 @@ export default createReducer(initialState, (builder) => {
 
 });
 
-function sliceBook(books) {
-  const output = [];
+function sliceBooks(stateBooks, newBooks) {
 
-  for (const book of books) {
+  for (const book of newBooks) {
+    if (stateBooks.find(el => el.id === book.id)) continue;
     const {volumeInfo} = book;
     const {imageLinks} = volumeInfo;
 
-    output.push({
+    stateBooks.push({
       id: book.id,
       authors: volumeInfo?.authors?.join(", "),
       categories: volumeInfo?.categories?.join("/ "),
@@ -48,5 +54,5 @@ function sliceBook(books) {
       title: volumeInfo?.title
     });
   }
-  return output;
+  return stateBooks;
 }
