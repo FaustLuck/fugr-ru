@@ -1,12 +1,15 @@
 .info {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   flex: 1;
   max-width: 1280px;
   width: 100%;
-  margin: 0 auto;
+  margin: 10px auto 0;
+
+  @media screen and (max-width: $medium) {
+    flex-direction: column;
+  }
 
   &__thumbnail {
     display: flex;
@@ -23,7 +26,7 @@
       width: 100%;
     }
 
-    @include darkMode{
+    @include darkMode {
       background-color: $glowDark;
       & > picture > img {
         box-shadow: 10px 10px 10px 10px $shadowDark;
