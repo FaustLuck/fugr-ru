@@ -1,6 +1,6 @@
 import { useState } from "react";
 import List from "@c/List/List.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getBooks, clear, saveChoice } from "@s/actions.js";
 import "@c/Header/Header.scss";
 import { useNavigate } from "react-router-dom";
@@ -23,11 +23,13 @@ function Header() {
   const [category, setCategory] = useState("all");
   const [sortBy, setSortBy] = useState("relevance");
   const [searchString, setSearchString] = useState("");
+  const loading = useSelector(state => state.loading);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   function sendQuery(e) {
     if (e.type === "keydown" && e.code !== "NumpadEnter" && e.code !== "Enter") return;
+    if (loading) return;
     e.preventDefault();
     navigate("/");
     dispatch(clear());
@@ -41,6 +43,7 @@ function Header() {
         <h1>Поиск книг</h1>
         <div className="search">
           <input placeholder="Поиск..." type="text"
+                 disabled={loading}
                  className="search__input"
                  onChange={(e) => setSearchString(e.target.value)}
                  onKeyDown={sendQuery}

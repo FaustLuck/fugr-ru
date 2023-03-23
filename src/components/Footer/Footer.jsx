@@ -5,6 +5,7 @@ import { getBooks, updateStartIndex } from "@s/actions.js";
 function Footer() {
   const dispatch = useDispatch();
   const fullLoad = useSelector(state => state.fullLoad);
+  const loading = useSelector(state => state.loading);
 
   function loadMore() {
     dispatch(updateStartIndex());
@@ -13,7 +14,7 @@ function Footer() {
 
   return (
     <footer>
-      <input type="button" value="Загрузить еще" disabled={fullLoad!==false} onClick={loadMore}/>
+      <input type="button" value="Загрузить еще" disabled={fullLoad!==false || loading} onClick={loadMore}/>
     </footer>
   );
 }
