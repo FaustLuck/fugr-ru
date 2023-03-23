@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import "@c/BookInfo/BookInfo.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { chooseBook, getBook } from "@s/actions.js";
+import Loader from "@c/Loader/Loader.jsx";
 
 function BookInfo() {
   const {id} = useParams();
@@ -10,7 +11,11 @@ function BookInfo() {
     const dispatch = useDispatch();
     dispatch(chooseBook(id));
     dispatch(getBook());
-    return (<></>);
+    return (
+      <section className="info">
+        <Loader/>
+      </section>
+    );
   }
   return (
     <section className="info">
