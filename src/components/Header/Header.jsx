@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { getBooks, clear } from "@s/actions.js";
 import "@c/Header/Header.scss";
 import { useNavigate } from "react-router-dom";
+import imgURL from "@a/glass.svg";
 
 function Header() {
   const categories = [
@@ -37,11 +38,14 @@ function Header() {
     <header>
       <form>
         <h1>Поиск книг</h1>
-        <input placeholder="Поиск..." type="text"
-               className="search"
-               onChange={(e) => setSearchString(e.target.value)}
-               onKeyDown={sendQuery}
-        ></input>
+        <div className="search">
+          <input placeholder="Поиск..." type="text"
+                 className="search__input"
+                 onChange={(e) => setSearchString(e.target.value)}
+                 onKeyDown={sendQuery}
+          ></input>
+          <img src={imgURL} alt="Искать" title="Искать"/>
+        </div>
         {/*<input type="button" value="Поиск" title="Искать"/>*/}
         <div>
           <label>

@@ -1,15 +1,15 @@
 header {
-  width: 100%;
-  text-align: center;
-  display: flex;
-  align-items: center;
+  //width: 100%;
+  //text-align: center;
+  //display: flex;
+  //align-items: center;
   position: sticky;
   top: 0;
   background-color: $primaryLight;
   padding-bottom: 1em;
   box-shadow: 0 9px 10px 0 $primaryLight;
 
-  @include darkMode{
+  @include darkMode {
     background-color: $primaryDark;
     box-shadow: 0 9px 10px 0 $primaryDark;
   }
@@ -18,15 +18,31 @@ header {
 form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 0 auto;
 }
 
 .search {
-  position: relative;
-  font-size: 1.5em;
-  margin: .5em;
+  display: flex;
+  background-color: $primaryTextLight;
+  width: fit-content;
+  align-items: center;
+  padding: .25em;
 
-  &::after {
-    position: absolute;
+  @include darkMode {
+    background-color: $primaryTextDark;
+  }
+
+
+  &__input {
+    font-size: 1.5em;
+    appearance: none;
+    border: none;
+    outline: none;
+  }
+
+  & > img {
+    height: 1.5em;
+    margin-left: .5em;
   }
 }
