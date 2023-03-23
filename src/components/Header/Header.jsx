@@ -44,9 +44,8 @@ function Header() {
                  onChange={(e) => setSearchString(e.target.value)}
                  onKeyDown={sendQuery}
           ></input>
-          <img src={imgURL} alt="Искать" title="Искать"/>
+          <img src={imgURL} alt="Искать" title="Искать" onClick={sendQuery}/>
         </div>
-        {/*<input type="button" value="Поиск" title="Искать"/>*/}
         <div>
           <label>
             Категория:
