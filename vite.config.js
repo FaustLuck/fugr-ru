@@ -43,7 +43,7 @@ export default defineConfig({
         replacement: fileURLToPath(new URL("./src/pages", import.meta.url))
       },
       {
-        find:'@scss',
+        find:"@scss",
         replacement: fileURLToPath(new URL("./src/styles", import.meta.url))
       }
     ]
