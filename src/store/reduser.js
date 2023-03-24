@@ -62,7 +62,7 @@ function sliceBook(book) {
   return {
     id: book.id,
     authors: volumeInfo?.authors?.join(", "),
-    categories: volumeInfo?.categories?.join(", "),
+    categories: volumeInfo?.categories,
     description: volumeInfo?.description,
     smallThumbnail: imageLinks?.smallThumbnail,
     thumbnail: imageLinks?.thumbnail,

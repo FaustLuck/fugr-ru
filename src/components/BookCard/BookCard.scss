@@ -38,6 +38,7 @@
   & > div {
     min-height: 40%;
     max-width: 100%;
+    margin-bottom: 1em;
 
     & > img {
       height: 100%;
@@ -46,14 +47,21 @@
       margin: 0 auto;
       max-width: 100%;
       object-fit: contain;
+      box-shadow: 0px 0px 10px 5px $shadowLight;
+
+      @include darkMode{
+        box-shadow: 0px 0px 10px 5px $shadowDark;
+      }
     }
   }
 
+  & > span {
+    min-height: 1.5em;
+  }
 
   &__categories {
     font-style: italic;
     overflow: hidden;
-    height: 1.5em;
     color: $secondaryTextLight;
 
     @include darkMode {
