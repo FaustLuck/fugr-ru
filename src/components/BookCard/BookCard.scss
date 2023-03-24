@@ -47,10 +47,10 @@
       margin: 0 auto;
       max-width: 100%;
       object-fit: contain;
-      box-shadow: 0px 0px 10px 5px $shadowLight;
+      box-shadow: 0 0 10px 5px $shadowLight;
 
       @include darkMode{
-        box-shadow: 0px 0px 10px 5px $shadowDark;
+        box-shadow: 0 0 10px 5px $shadowDark;
       }
     }
   }
