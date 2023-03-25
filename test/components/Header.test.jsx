@@ -4,14 +4,25 @@ import Header from "@c/Header/Header.jsx";
 import imgURL from "@a/glass.svg";
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
+import { MemoryRouter } from "react-router-dom";
 
 const mockedUsedNavigate = vi.fn();
 const mockedUsedLocation = vi.fn();
 
-vi.mock("react-router-dom", async () => ({
-  useNavigate: () => mockedUsedNavigate,
-  useLocation: () => mockedUsedLocation
-}));
+// vi.mock("react-router-dom", async () => ({
+//
+//   useNavigate: () => mockedUsedNavigate,
+//   useLocation: () => mockedUsedLocation
+// }));
+
+vi.mock("react-router-dom", async () => {
+  const actual = await vi.importActual("react-router-dom");
+  return {
+    ...actual,
+    useNavigate: () => mockedUsedNavigate,
+    useLocation: () => mockedUsedLocation
+  };
+});
 
 function createWrapper(injects = {}) {
   const preloadedState = Object.assign({selected: {}}, injects);
@@ -24,9 +35,6 @@ describe("Header", () => {
 
   afterEach(() => {
     wrapper.unmount();
-  });
-
-  afterAll(() => {
     vi.clearAllMocks();
   });
 
@@ -52,6 +60,14 @@ describe("Header", () => {
 
     await userEvent.click(img);
     expect(spy).not.toBeCalled();
+  });
+
+  test("при инициации поиска возвращает к корневому адресу", async() => {
+   wrapper= renderWithProviders(<MemoryRouter initialEntries={["/testID"]}><Header/></MemoryRouter>,
+      {preloadedState: {selected:{}}});
+    const input = screen.queryAllByDisplayValue("");
+    await userEvent.type(input[0], "test string{enter}");
+    expect(mockedUsedNavigate).toBeCalledWith('/')
   });
 
   test("запрос в Google Book API отправляется, по клику на лупу, если строка поиска не пуста", async () => {
