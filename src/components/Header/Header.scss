@@ -46,7 +46,7 @@ form {
     width: 100%;
     padding: .25em;
 
-    &:disabled {
+    &:disabled{
       cursor: no-drop;
     }
   }
@@ -56,5 +56,9 @@ form {
     height: 1.5em;
     right: .5em;
     cursor: pointer;
+
+    &.disabled{
+      pointer-events: none;
+    }
   }
 }

@@ -30,7 +30,7 @@ function BookInfo() {
         </picture>
       </div>
       <div className="info__detail detail">
-        <span className="detail__categories">{book.categories.join('/ ')}</span>
+        <span className="detail__categories">{book.categories?.join(", ")}</span>
         <h2>{book.title}</h2>
         <span className="detail__authors">{book.authors}</span>
         <p>{book.description}</p>

@@ -20,7 +20,6 @@ export default createReducer(initialState, (builder) => {
       Object.assign(state.selected, {...payload, startIndex: 0, pagination: 30});
     })
     .addCase(getBook.fulfilled, (state, {payload}) => {
-      if (state.books.find(oldBook => oldBook.id === payload.id)) return;
       state.books.push(sliceBook(payload));
       state.loading = false;
     })
