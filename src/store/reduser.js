@@ -5,11 +5,14 @@ import { sliceBook } from "@u/utils.js";
 
 export default createReducer(initialState, (builder) => {
   builder
-    .addCase(updateStartIndex, ({totalItems, selected}) => {
+    .addCase(updateStartIndex, ({totalItems, selected, fullLoad}) => {
       selected.startIndex = (selected.startIndex + selected.pagination > totalItems)
         ? totalItems
         : selected.startIndex + selected.pagination;
-      if (selected.pagination + selected.startIndex > totalItems) selected.pagination = totalItems - selected.startIndex;
+      if (selected.pagination + selected.startIndex > totalItems) {
+        selected.pagination = totalItems - selected.startIndex;
+      }
+      fullLoad = selected.pagination < 30;
     })
     .addCase(chooseBook, ({selected}, {payload}) => {
       selected.bookID = payload;
@@ -32,7 +35,7 @@ export default createReducer(initialState, (builder) => {
     })
     .addCase(getBooks.fulfilled, (state, {payload}) => {
       const {totalItems, items} = payload;
-      state.fullLoad = (!items);
+      state.fullLoad = (!items || items.length < state.selected.pagination);
       if (items) {
         items.forEach(newBook => {
           if (state.books.find(oldBook => oldBook.id === newBook.id)) return;
