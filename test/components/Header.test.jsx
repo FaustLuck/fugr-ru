@@ -6,9 +6,11 @@ import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
 
 const mockedUsedNavigate = vi.fn();
+const mockedUsedLocation = vi.fn();
 
 vi.mock("react-router-dom", async () => ({
-  useNavigate: () => mockedUsedNavigate
+  useNavigate: () => mockedUsedNavigate,
+  useLocation: () => mockedUsedLocation
 }));
 
 function createWrapper(injects = {}) {
