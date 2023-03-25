@@ -7,8 +7,9 @@ import Loader from "@c/Loader/Loader.jsx";
 function BookInfo() {
   const {id} = useParams();
   const book = useSelector(state => state.books.find(el => el.id === id));
+  const dispatch = useDispatch();
+
   if (!book) {
-    const dispatch = useDispatch();
     dispatch(chooseBook(id));
     dispatch(getBook());
     return (

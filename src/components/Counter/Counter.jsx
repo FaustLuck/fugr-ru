@@ -5,7 +5,7 @@ function Counter() {
   if (totalItems === null) return (<></>);
   return (
     <div>
-      <span>{totalItems > 0 ? `Найдено ${totalItems}` : `Не найдено по запросу`} .</span>
+      <span>{totalItems > 0 ? `Найдено ${totalItems}` : `Не найдено по запросу`}.</span>
     </div>
   );
 }

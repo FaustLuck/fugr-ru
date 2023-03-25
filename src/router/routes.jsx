@@ -1,8 +1,7 @@
-import { createBrowserRouter } from "react-router-dom";
 import App from "@p/App.jsx";
 import Book from "@p/Book.jsx";
 
-const router = createBrowserRouter([
+export const routes = [
   {
     path: "/",
     element: <App/>,
@@ -11,6 +10,4 @@ const router = createBrowserRouter([
     path: "/:id",
     element: <Book/>
   }
-]);
-
-export default router;
+];
