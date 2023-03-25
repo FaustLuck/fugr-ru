@@ -1,6 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { initialState } from "@s/initialState.js";
 import { getBooks, chooseBook, saveChoice, updateStartIndex, getBook } from "@s/actions.js";
+import { sliceBook } from "@u/utils.js";
 
 export default createReducer(initialState, (builder) => {
   builder
@@ -51,17 +52,3 @@ export default createReducer(initialState, (builder) => {
     });
 
 });
-
-function sliceBook(book) {
-  const {volumeInfo} = book;
-  const {imageLinks} = volumeInfo;
-  return {
-    id: book.id,
-    authors: volumeInfo?.authors?.join(", "),
-    categories: volumeInfo?.categories,
-    description: volumeInfo?.description,
-    smallThumbnail: imageLinks?.smallThumbnail,
-    thumbnail: imageLinks?.thumbnail,
-    title: volumeInfo?.title
-  };
-}

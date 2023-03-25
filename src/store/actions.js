@@ -1,4 +1,5 @@
 import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { createQuery } from "@u/utils.js";
 
 export const updateStartIndex = createAction("updateStartIndex");
 export const chooseBook = createAction("chooseBook");
@@ -32,15 +33,3 @@ export const getBooks = createAsyncThunk(
   }
 );
 
-function createQuery({searchString, category, sortBy, startIndex, pagination}) {
-  if (searchString === "") return null;
-  let query = `https://www.googleapis.com/books/v1/volumes?q=${searchString}`;
-
-  if ((category !== "all")) query += `+subject:${category}`;
-  if (pagination > 0) query += `&maxResults=${pagination}`;
-  if (sortBy !== "") query += `&orderBy=${sortBy}`;
-  if (startIndex > 0) query += `&startIndex=${startIndex}`;
-  query += `&key=${import.meta.env.VITE_API_key}`;
-
-  return query;
-}
