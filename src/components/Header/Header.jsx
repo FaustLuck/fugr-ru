@@ -3,7 +3,7 @@ import List from "@c/List/List.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { getBooks, saveChoice } from "@s/actions.js";
 import "@c/Header/Header.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import imgURL from "@a/glass.svg";
 import Counter from "@c/Counter/Counter.jsx";
 
@@ -27,11 +27,12 @@ function Header() {
   const loading = useSelector(state => state.loading);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   function sendQuery(e) {
     if (e.type === "keydown" && e.code !== "NumpadEnter" && e.code !== "Enter") return;
     e.preventDefault();
-    navigate("/");
+    if (location.pathname !== "/") navigate("/");
     dispatch(saveChoice({category, sortBy, searchString}));
     dispatch(getBooks());
   }
