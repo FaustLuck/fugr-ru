@@ -42,12 +42,12 @@ function Header() {
         <h1>Поиск книг</h1>
         <div className="search">
           <input placeholder="Поиск..." type="text"
-                 disabled={loading===true}
+                 disabled={loading === true}
                  className="search__input"
                  onChange={(e) => setSearchString(e.target.value)}
                  onKeyDown={sendQuery}
           ></input>
-          <img className={loading ? 'disabled' : ""} src={imgURL} alt="Искать" title="Искать" onClick={sendQuery}/>
+          <img className={loading ? "disabled" : ""} src={imgURL} alt="Искать" title="Искать" onClick={sendQuery}/>
         </div>
         <div>
           <label>
