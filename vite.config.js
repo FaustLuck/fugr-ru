@@ -43,9 +43,21 @@ export default defineConfig({
         replacement: fileURLToPath(new URL("./src/pages", import.meta.url))
       },
       {
-        find:"@scss",
+        find:'@u',
+        replacement: fileURLToPath(new URL("./src/utils", import.meta.url))
+      },
+      {
+        find: "@scss",
         replacement: fileURLToPath(new URL("./src/styles", import.meta.url))
       }
     ]
+  },
+  test: {
+    globals: true,
+    environment: "jsdom",
+    setupFiles: ["./test/extends.js"],
+    coverage: {
+      provider: 'c8'
+    },
   }
 });
