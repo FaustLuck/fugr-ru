@@ -1,6 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { initialState } from "@s/initialState.js";
-import { getBooks, clear, chooseBook, saveChoice, updateStartIndex, getBook } from "@s/actions.js";
+import { getBooks, chooseBook, saveChoice, updateStartIndex, getBook } from "@s/actions.js";
 
 export default createReducer(initialState, (builder) => {
   builder
@@ -10,17 +10,13 @@ export default createReducer(initialState, (builder) => {
         : selected.startIndex + selected.pagination;
       if (selected.pagination + selected.startIndex > totalItems) selected.pagination = totalItems - selected.startIndex;
     })
-    .addCase(clear, (state) => {
-      state.books = [];
-      state.totalItems = null;
-      state.selected.startIndex = 0;
-      state.selected.pagination = 30;
-    })
     .addCase(chooseBook, ({selected}, {payload}) => {
       selected.bookID = payload;
     })
     .addCase(saveChoice, (state, {payload}) => {
-      Object.assign(state.selected, payload);
+      state.books = [];
+      state.totalItems = null;
+      Object.assign(state.selected, {...payload, startIndex: 0, pagination: 30});
     })
     .addCase(getBook.fulfilled, (state, {payload}) => {
       if (state.books.find(oldBook => oldBook.id === payload.id)) return;

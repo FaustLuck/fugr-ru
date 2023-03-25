@@ -1,7 +1,7 @@
 import { useState } from "react";
 import List from "@c/List/List.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { getBooks, clear, saveChoice } from "@s/actions.js";
+import { getBooks, saveChoice } from "@s/actions.js";
 import "@c/Header/Header.scss";
 import { useNavigate } from "react-router-dom";
 import imgURL from "@a/glass.svg";
@@ -33,7 +33,6 @@ function Header() {
     if (loading) return;
     e.preventDefault();
     navigate("/");
-    dispatch(clear());
     dispatch(saveChoice({category, sortBy, searchString}));
     dispatch(getBooks());
   }
