@@ -4,10 +4,14 @@
   background: #979794;
   position: relative;
   border-radius: 8px;
+  margin: 1em auto;
 
   display: flex;
   padding: 10px;
-  margin: 1em;
+
+  &__wrapper {
+    width: 100%;
+  }
 
   .page {
     border-radius: 8px;
